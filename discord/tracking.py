@@ -469,6 +469,8 @@ class HeadersContext:
 
     @property
     def impersonate(self) -> str:
+        if hasattr(self, "_impersonate"):
+            return self._impersonate
         """:class:`str`: The curl-cffi TLS fingerprint to adopt for HTTP requests."""
         try:
             if self.platform == 'iOS':
