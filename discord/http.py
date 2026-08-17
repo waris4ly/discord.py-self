@@ -1141,6 +1141,8 @@ class HTTPClient:
                         
                         # Add a small delay to prevent instantly retrying and getting flagged/logged out
                         await asyncio.sleep(2)
+                        headers.pop("X-Client-Trace-ID", None)
+                        headers.pop("X-Failed-Requests", None)
 
             if response is not None:
                 # We've run out of retries, raise
