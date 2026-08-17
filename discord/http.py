@@ -1138,6 +1138,9 @@ class HTTPClient:
                             headers['X-Captcha-Session-Id'] = e.session_id
                         if e.rqtoken:
                             headers['X-Captcha-Rqtoken'] = e.rqtoken
+                        
+                        # Add a small delay to prevent instantly retrying and getting flagged/logged out
+                        await asyncio.sleep(2)
 
             if response is not None:
                 # We've run out of retries, raise
